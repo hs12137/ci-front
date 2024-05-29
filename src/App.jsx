@@ -46,7 +46,8 @@ function App() {
 
   useEffect(() => {
     getBoards();
-  }, [])
+  }, []);
+  
   return (
     <div className='container'>
       <input 
