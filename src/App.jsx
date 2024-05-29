@@ -29,7 +29,11 @@ function App() {
     try {
       const url = `/api/boards`;
       const response = await axios.get(url);
-      setBoardList(response.data);
+      const newBoardList = response.data;
+
+      if (JSON.stringify(boardList) !== JSON.stringify(newBoardList)) {
+        setBoardList(newBoardList);
+      }
     }catch(e) {
       console.log(e)
     }
@@ -47,7 +51,7 @@ function App() {
   useEffect(() => {
     getBoards();
   }, []);
-  
+
   return (
     <div className='container'>
       <input 
