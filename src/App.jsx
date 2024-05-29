@@ -1,6 +1,7 @@
 import axios from 'axios';
 import './App.css';
 import { useEffect, useState } from 'react';
+import { useCallback } from 'react';
 
 function App() {
   const [boardList, setBoardList] = useState([]);
@@ -25,19 +26,20 @@ function App() {
       alert("등록 실패");
     }
   };
-  const getBoards = async () => {
+  const getBoards = useCallback(async () => {
     try {
       const url = `/api/boards`;
       const response = await axios.get(url);
       const newBoardList = response.data;
 
+      // 상태가 이전 상태와 동일하지 않을 때만 업데이트
       if (JSON.stringify(boardList) !== JSON.stringify(newBoardList)) {
         setBoardList(newBoardList);
       }
-    }catch(e) {
-      console.log(e)
+    } catch (e) {
+      console.log(e);
     }
-  };
+  }, [boardList]); // boardList를 의존성 배열에 포함
   const deleteBoard = async (id) => {
     try{
       const url = `/api/boards/${id}`
@@ -50,7 +52,7 @@ function App() {
 
   useEffect(() => {
     getBoards();
-  }, []);
+  }, [getBoards]);
 
   return (
     <div className='container'>
