@@ -36,5 +36,5 @@ jobs:
       run: docker build -t ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO}}:front .
       
     - name: Docker push
-      run: docker push -t ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO}}:front
+      run: docker push ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO}}:front
           
