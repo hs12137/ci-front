@@ -17,7 +17,7 @@ function App() {
   };
   const createBoard = async () => {
     try{
-      const url = "http://localhost:8080/api/boards";
+      const url = `http://${location.host}:8080/api/boards`;
       await axios.post(url, formData);
       alert("성공적으로 등록하엿습니다.");
       getBoards();
@@ -27,7 +27,7 @@ function App() {
   };
   const getBoards = async () => {
     try {
-      const url = "http://localhost:8080/api/boards"
+      const url = `http://${location.host}:8080/api/boards`;
       const response = await axios.get(url);
       setBoardList(response.data);
     }catch(e) {
@@ -36,7 +36,7 @@ function App() {
   };
   const deleteBoard = async (id) => {
     try{
-      const url = `http://localhost:8080/api/boards/${id}`
+      const url = `http://${location.host}:8080/api/boards/${id}`
       await axios.delete(url, id);
       getBoards();
     }catch(e){
