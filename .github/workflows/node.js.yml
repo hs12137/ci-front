@@ -48,4 +48,4 @@ jobs:
         script: |
           docker pull ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO}}:front
           docker rm -f react-app
-          docker run -d --name react-app -p 80:80 ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO}}:front
+          docker run -d --name react-app --network server ${{secrets.DOCKER_USERNAME}}/${{secrets.DOCKER_REPO}}:front
